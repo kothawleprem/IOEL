@@ -3,6 +3,8 @@ import { View, StyleSheet, TouchableOpacity,Text,Image, KeyboardAvoidingView } f
 import { Input } from "@rneui/themed";
 import { auth } from './firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 const Login = ({navigation}) => {
@@ -17,6 +19,8 @@ const Login = ({navigation}) => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           navigation.navigate('Home');
+          AsyncStorage.setItem('user_id', "1");
+
         })
         .catch((error) => {
           const errorCode = error.code;
